@@ -4,7 +4,6 @@ Created on Sun Nov 22 23:24:05 2015
 
 @author: Naman
 """
-import matplotlib.pyplot as plt
 import scipy.io
 #from sklearn import svm,grid_search
 import numpy as np
@@ -25,10 +24,11 @@ scale1 = preprocessing.StandardScaler().fit(train)
 train_scaled=scale1.transform(train)
 
 model=manifold.TSNE()
-Y=model.fit_transform(train_scaled[0:20000])
+Y=model.fit_transform(train_scaled[0:50000])
+np.save('tsneset',Y)
 Y0=[]
 Y1=[]
-for i in range(20000):
+for i in range(50000):
     if train_label[i]==0:
         Y0.append([Y[i,0],Y[i,1]])
     if train_label[i]==1:
@@ -37,7 +37,7 @@ for i in range(20000):
 Y0=np.array(Y0);
 Y1=np.array(Y1);
 
-plt.scatter(Y0[:, 0], Y0[:, 1],color='red'),plt.scatter(Y1[:, 0], Y1[:, 1])
+#plt.scatter(Y0[:, 0], Y0[:, 1],color='red'),plt.scatter(Y1[:, 0], Y1[:, 1])
  
 
 #param_grid = [
